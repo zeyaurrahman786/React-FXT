@@ -1,0 +1,25 @@
+.card {
+    width: 250px;
+    height: 400px;
+    /* background-color: rgb(30, 210, 36); */
+    border-radius: 15px;
+    position: relative;
+    border: 1px solid gray;
+}
+
+.img-card{
+    height: 150px;
+    width: 150px;
+    /* background-color: rgb(198, 61, 88); */
+    border-radius: 50%;
+    left: 45px;
+    top: 25px;
+    position: absolute;
+}
+
+.img-card img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
