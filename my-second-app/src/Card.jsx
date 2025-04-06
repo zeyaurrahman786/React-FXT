@@ -1,5 +1,6 @@
 import React from 'react'
 import "./Card.css"
+import Button from './Button.jsx';
 
 const Card = () => {
     return (
@@ -12,6 +13,9 @@ const Card = () => {
                 <div className="description">
                     <p>FullStack Developer</p>
                 </div>
+                <Button name={"Button"}/>
+                <Button name={"Submit"}/>
+                <Button name={"Delete"}/>
             </div>
         </div>
     )
