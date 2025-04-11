@@ -1,5 +1,6 @@
-export default function Button({name, onClick}) {
+export default function Button(props) {
     return (
-        <button onClick={onClick}>{name}</button>
+        <button>{props.name}</button>
     )
 }
+
