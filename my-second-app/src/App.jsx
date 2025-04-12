@@ -105,69 +105,69 @@
 
 
 
-import "./App.css"
-import { useEffect, useState } from 'react'
+// import "./App.css"
+// import { useEffect, useState } from 'react'
 
-const App = () => {
+// const App = () => {
 
-  const [count, setCount] = useState(0);
-  const [number, setNumber] = useState(0);
+//   const [count, setCount] = useState(0);
+//   const [number, setNumber] = useState(0);
 
-  function handleIncrement() {
-    setCount(count + 1);
-  }
+//   function handleIncrement() {
+//     setCount(count + 1);
+//   }
 
-  function handleDecrement() {
-    setCount(count - 1);
-  }
+//   function handleDecrement() {
+//     setCount(count - 1);
+//   }
 
-  function handleReset() {
-    setCount(0);
-  }
+//   function handleReset() {
+//     setCount(0);
+//   }
 
 
   // 2nd Counter
 
-  function handleNumberIncrement() {
-    setNumber(number + 1);
-  }
+//   function handleNumberIncrement() {
+//     setNumber(number + 1);
+//   }
 
-  function handleNumberDecrement() {
-    setNumber(number - 1);
-  }
+//   function handleNumberDecrement() {
+//     setNumber(number - 1);
+//   }
 
-  function handleNumberReset() {
-    setNumber(0);
-  }
+//   function handleNumberReset() {
+//     setNumber(0);
+//   }
 
- useEffect(() => {
-  console.log("This is a side effect!");
- }, [number, count])
+//  useEffect(() => {
+//   console.log("This is a side effect!");
+//  }, [number, count])
 
-  return (
-    <div>
-      <h1>Counter App</h1>
-      <h3>Count: {count}</h3>
-      <button onClick={handleIncrement}>Increment</button>
-      &nbsp; &nbsp;
-      <button onClick={handleDecrement}>Decrement</button>
-      <br /> <br />
-      <button onClick={handleReset}>Reset</button>
+//   return (
+//     <div>
+//       <h1>Counter App</h1>
+//       <h3>Count: {count}</h3>
+//       <button onClick={handleIncrement}>Increment</button>
+//       &nbsp; &nbsp;
+//       <button onClick={handleDecrement}>Decrement</button>
+//       <br /> <br />
+//       <button onClick={handleReset}>Reset</button>
 
-      <hr />
+//       <hr />
 
-      <h1>Counter App</h1>
-      <h3>Count: {number}</h3>
-      <button onClick={handleNumberIncrement}>Increment</button>
-      &nbsp; &nbsp;
-      <button onClick={handleNumberDecrement}>Decrement</button>
-      <br /> <br />
-      <button onClick={handleNumberReset}>Reset</button>
-    </div>
-  )
-}
+//       <h1>Counter App</h1>
+//       <h3>Count: {number}</h3>
+//       <button onClick={handleNumberIncrement}>Increment</button>
+//       &nbsp; &nbsp;
+//       <button onClick={handleNumberDecrement}>Decrement</button>
+//       <br /> <br />
+//       <button onClick={handleNumberReset}>Reset</button>
+//     </div>
+//   )
+// }
 
-export default App
+// export default App
 
 
 
@@ -202,3 +202,25 @@ export default App
 // }
 
 // export default App
+
+
+
+
+
+
+
+
+
+import React from 'react';
+import "./App.css";
+import Jokes from './Jokes';
+
+function App() {
+  return (
+    <>
+      <Jokes />
+    </>
+  )
+}
+
+export default App
