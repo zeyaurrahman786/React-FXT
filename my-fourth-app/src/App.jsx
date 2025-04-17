@@ -6,11 +6,19 @@ import Contact from './Components/Contact';
 import Blogs from './Components/Blogs';
 import Signup from './Components/Signup';
 import Login from './Components/Login';
+import RecipeReviewCard from './Components/RecipeReviewCard';
+import CredentialsSignInPage from './Components/CredentialsSignInPage';
+import OAuthSignInPage from './Components/OAuthSignInPage';
+import CrudBasic from './Components/CrudBasic';
 
 const App = () => {
   return (
     <>
-      <Router>
+    {/* <RecipeReviewCard /> */}
+    {/* <CredentialsSignInPage /> */}
+    {/* <OAuthSignInPage /> */}
+    {/* <CrudBasic /> */}
+      {/* <Router>
         <Link to="/">Home</Link>
         &nbsp; &nbsp; &nbsp; &nbsp;
         <Link to="/about">About</Link>
@@ -32,7 +40,7 @@ const App = () => {
           <Route path='/login' element={<Login />}></Route>
         </Routes>
 
-      </Router>
+      </Router> */}
     </>
   )
 }
