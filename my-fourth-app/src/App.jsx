@@ -155,6 +155,7 @@ const App = () => {
         <input
           className="px-6 py-1 rounded-xl bg-sky-500 text-white flex ml-14 mt-4 hover:bg-red-600"
           type="submit"
+          value={"Sign Up"}
         />
       </form>
     </div>
