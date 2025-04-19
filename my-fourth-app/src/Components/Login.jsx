@@ -8,7 +8,7 @@ const Login = () => {
     <>
     <div>Welcome to the Login Page</div>
     <HomeIcon color="primary" />
-    <form style={{}}>
+    <form>
     <TextField id="outlined-basic" label="Email" variant="outlined" />
     <TextField id="outlined-basic" label="Password" variant="outlined" />
     <Button variant="contained">Submit</Button>

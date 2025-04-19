@@ -5,14 +5,24 @@ import Button from '@mui/material/Button';
 
 
 const Signup = () => {
-  return (<>
-      <div>Welcome to the Signup Page</div>
-      <form>
-      <TextField type='text' id="outlined-basic" label="FullName" variant="outlined" />
-      <TextField type='email' id="outlined-basic" label="Email" variant="outlined" />
-      <TextField type='password' id="outlined-basic" label="Password" variant="outlined" />
-      <Button variant="contained">Submit</Button>
-      </form>
+  return (
+    <>
+      <div className="container w-96 h-96 bg-slate-700">
+        <h3>SIGN UP </h3>
+        <form>
+           <input
+             type="email"
+             name="email"
+           />
+           <input
+             type="password"
+             name="password"
+           />
+           <button type="submit">
+             Submit
+           </button>
+         </form>
+      </div>
     </>
   )
 }
