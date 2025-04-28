@@ -1,26 +1,39 @@
-import React from "react";
+import React, { useContext } from "react";
 import Nav from "./Nav";
 import { Link } from "react-router-dom";
+import { ProductContext } from "../Utils/Context";
+import Loading from "./Loading";
 
 const Home = () => {
-  return (
+  const [products] = useContext(ProductContext);
+  // console.log(products);
+
+  return products ? (
     <>
       <Nav />
       <div className="h-full w-[85%] p-10 pt-[5%] flex flex-wrap overflow-x-hidden overflow-y-auto">
-        <div className="card p-3 border shadow rounded w-[18%] h-[30vh] flex-col flex justify-center items-center mr-3 mb-3">
-          <Link to="/details/1" className="w-full h-full flex flex-col justify-center items-center">
+        
+        {/* Mapping through the products array to display each product */}
+        {products.map((product) => (
+          <Link
+            to={`/details/${product.id}`}
+            key={product.id}
+            className="card w-[18%] h-[40vh] mr-3 mb-3 p-3 border shadow rounded flex flex-col justify-center items-center"
+          >
             <div
               className="image w-full h-[80%] bg-contain bg-no-repeat bg-center mb-3 hover:scale-110"
               style={{
-                backgroundImage:
-                  "url(https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg)",
+                backgroundImage: `url(${product.image})`,
               }}
             ></div>
-            <h1 className="hover:text-blue-300">Lorem ipsum dolor sit</h1>
+            <h1 className="hover:text-blue-300">{product.title}</h1>
           </Link>
-        </div>
+        ))}
+
       </div>
     </>
+  ) : (
+    <Loading />
   );
 };
 

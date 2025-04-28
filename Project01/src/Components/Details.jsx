@@ -1,24 +1,44 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import axios from "../Utils/axios";
+import Loading from "./Loading";
 
 const Details = () => {
-  return (
-    <div className="w-[70%] min-h-screen m-auto p-[10%] flex justify-between items-center">
+
+  const [product, setProduct] = useState(null);
+
+  const {id} = useParams();
+  // console.log(id);
+
+  const getSingleProduct = async () => {
+    try {
+      const { data } = await axios.get(`/products/${id}`);
+      // console.log(data);
+      setProduct(data);
+    } catch (error) {
+      console.error("Error fetching product details:", error);
+    }
+  }
+
+  useEffect(() => {
+    getSingleProduct();
+  }, []);
+
+  return product ? (
+    <div className="w-[70%] h-screen m-auto p-[10%] flex justify-between items-center">
       <img
         className="object-contain h-[80%] w-[40%]"
-        src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
-        alt="Fjallraven Backpack"
+        src={`${product.image}`}
+        alt="img"
       />
       <div className="content w-[50%]">
         <h1 className="text-2xl font-semibold mb-2">
-          Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops
+          {product.title}
         </h1>
-        <h3 className="text-zinc-400 my-2">men's clothing</h3>
-        <h2 className="text-red-300 font-medium mb-3">$ 109.95</h2>
+        <h3 className="text-zinc-400 my-2">{product.category}</h3>
+        <h2 className="text-red-300 font-medium mb-3">$ {product.price}</h2>
         <p className="text-gray-600 mb-4">
-          Your perfect pack for everyday use and walks in the forest. Stash your
-          laptop (up to 15 inches) in the padded sleeve, along with your everyday
-          essentials.
+          {product.description}
         </p>
         <div className="flex gap-4">
           <Link
@@ -36,6 +56,7 @@ const Details = () => {
         </div>
       </div>
     </div>
+  ) : ( <Loading />
   );
 };
 
