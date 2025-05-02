@@ -1,12 +1,38 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Nav from "./Nav";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ProductContext } from "../Utils/Context";
 import Loading from "./Loading";
+import axios from "../Utils/axios";
+import { set } from "mongoose";
 
 const Home = () => {
   const [products] = useContext(ProductContext);
   // console.log(products);
+
+  const { search } = useLocation();
+  const category = decodeURIComponent(search.split("=")[1]);
+  // console.log(search);
+  // console.log(category);
+
+  const [filteredProducts, setFilteredProducts] = useState(null);
+
+  const getCategory = async () => {
+    try {
+      const { data } = await axios.get(`/products/category/${category}`);
+      // console.log(data);
+      setFilteredProducts(data);
+    } catch (error) {
+      console.error("Error fetching category data:", error);
+    }
+  };
+
+  useEffect(() => {
+    if(!filteredProducts || category == "undefined") setFilteredProducts(products);
+    if (category != "undefined") getCategory();
+  }, [category, products]);
+
+  // console.log(filteredProducts);
 
   return products ? (
     <>
@@ -14,7 +40,7 @@ const Home = () => {
       <div className="h-full w-[85%] p-10 pt-[5%] flex flex-wrap overflow-x-hidden overflow-y-auto">
         
         {/* Mapping through the products array to display each product */}
-        {products.map((product) => (
+        {filteredProducts && filteredProducts.map((product) => (
           <Link
             to={`/details/${product.id}`}
             key={product.id}

@@ -15,7 +15,7 @@ const Nav = () => {
     return `rgba(${(Math.random() * 255).toFixed()},
     ${(Math.random() * 255).toFixed()}, 0.4)`;
   };
-  console.log(color());
+  // console.log(color());
 
   return (
     <nav className="w-[15%] h-full bg-zinc-50 flex flex-col items-center pt-5">
@@ -35,7 +35,7 @@ const Nav = () => {
             key={index}
             className="mb-3 flex items-center"
           >
-            <span className="w-[15px] h-[15px] rounded-full mr-2"></span>
+            <span style={{backgroundColor: color()}} className="w-[15px] h-[15px] rounded-full mr-2"></span>
             {category}
           </Link>
         ))}
