@@ -4,7 +4,6 @@ import { Link, useLocation } from "react-router-dom";
 import { ProductContext } from "../Utils/Context";
 import Loading from "./Loading";
 import axios from "../Utils/axios";
-import { set } from "mongoose";
 
 const Home = () => {
   const [products] = useContext(ProductContext);
