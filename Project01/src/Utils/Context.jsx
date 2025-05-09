@@ -5,22 +5,22 @@ export const ProductContext = createContext();
 
 const Context = (props) => {
 
-    const [products, setProducts] = useState(null);
+    const [products, setProducts] = useState(JSON.parse(localStorage.getItem("products")) || null);
 
-    const getProducts = async () => {
-      try {
-        const { data } = await axios("/products");
-        // console.log(data);
-        setProducts(data);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
-    console.log(products);
+    // const getProducts = async () => {
+    //   try {
+    //     const { data } = await axios("/products");
+    //     // console.log(data);
+    //     setProducts(data);
+    //   } catch (error) {
+    //     console.error("Error fetching products:", error);
+    //   }
+    // };
+    // console.log(products);
     
-    useEffect(() => {
-      getProducts();
-    }, []);
+    // useEffect(() => {
+    //   getProducts();
+    // }, []);
 
   return (
     <ProductContext.Provider value={[ products, setProducts ]}>

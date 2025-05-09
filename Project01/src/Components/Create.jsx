@@ -1,8 +1,7 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
 import { ProductContext } from "../Utils/Context";
-import { toast } from "react-toastify";
 import { nanoid } from "nanoid";
+import { useNavigate } from "react-router-dom";
 
 const Create = () => {
   const [title, setTitle] = useState("");
@@ -12,6 +11,8 @@ const Create = () => {
   const [description, setDescription] = useState("");
 
   const [products, setProducts] = useContext(ProductContext);
+
+  const navigate = useNavigate();
 
   const AddProductHandler = (e) => {
     e.preventDefault();
@@ -36,7 +37,8 @@ const Create = () => {
       description,
     };
     setProducts([...products, product]);
-    // toast.success("New Product Added Successfully");
+    localStorage.setItem("products", JSON.stringify([...products, product]));
+    navigate("/");
     // console.log(product);
   };
 
@@ -89,7 +91,7 @@ const Create = () => {
 
       <div className="w-1/2">
         <button className="py-2 px-5 border rounded border-blue-200 text-blue-300">
-          Add New Product
+          Submit
         </button>
       </div>
     </form>

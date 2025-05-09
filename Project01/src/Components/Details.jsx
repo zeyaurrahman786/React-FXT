@@ -1,28 +1,43 @@
-import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "../Utils/axios";
 import Loading from "./Loading";
+import { ProductContext } from "../Utils/Context";
 
 const Details = () => {
 
   const [product, setProduct] = useState(null);
 
+  const [products, setProducts] = useContext(ProductContext);
+
+  const navigate = useNavigate();
+
   const {id} = useParams();
   // console.log(id);
 
-  const getSingleProduct = async () => {
-    try {
-      const { data } = await axios.get(`/products/${id}`);
-      // console.log(data);
-      setProduct(data);
-    } catch (error) {
-      console.error("Error fetching product details:", error);
-    }
-  }
+  // const getSingleProduct = async () => {
+  //   try {
+  //     const { data } = await axios.get(`/products/${id}`);
+  //     // console.log(data);
+  //     setProduct(data);
+  //   } catch (error) {
+  //     console.error("Error fetching product details:", error);
+  //   }
+  // }
 
   useEffect(() => {
-    getSingleProduct();
+    // getSingleProduct();
+    if(!product){
+      setProduct(products.filter((item) => item.id == id)[0]);
+    }
   }, []);
+
+  const ProductDeleteHandler = (id) => {
+    const FilteredProducts = products.filter((item) => item.id !== id);
+    setProducts(products);
+    localStorage.setItem("products", JSON.stringify(FilteredProducts));
+    navigate("/");
+  }
 
   return product ? (
     <div className="w-[70%] h-screen m-auto p-[10%] flex justify-between items-center">
@@ -42,17 +57,17 @@ const Details = () => {
         </p>
         <div className="flex gap-4">
           <Link
-            to="/edit"
+            to={`/edit/${product.id}`}
             className="px-4 py-1 border border-blue-400 text-blue-500 rounded hover:bg-blue-100"
           >
             Edit
           </Link>
-          <Link
-            to="/delete"
+          <button 
+          onClick={() => ProductDeleteHandler(product.id)}
             className="px-4 py-1 border border-red-300 text-red-400 rounded hover:bg-red-100"
           >
             Delete
-          </Link>
+          </button>
         </div>
       </div>
     </div>
